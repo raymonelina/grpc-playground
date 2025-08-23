@@ -1,0 +1,27 @@
+syntax = "proto3";
+package ads;
+
+// Context message containing search query and product information
+message Context {
+  string query = 1;          // Search query (e.g., "coffee maker")
+  string asin_id = 2;        // Product identifier (e.g., "B000123")
+  string understanding = 3;  // Refined understanding (empty initially)
+}
+
+// Individual advertisement
+message Ad {
+  string asin_id = 1;        // Product identifier
+  string ad_id = 2;          // Advertisement identifier
+  double score = 3;          // Relevance score
+}
+
+// List of advertisements with version information
+message AdsList {
+  repeated Ad ads = 1;       // List of advertisements
+  uint32 version = 2;        // Version number (1, 2, 3)
+}
+
+// Service definition for bidirectional streaming ad serving
+service AdsService {
+  rpc GetAds(stream Context) returns (stream AdsList);
+}
