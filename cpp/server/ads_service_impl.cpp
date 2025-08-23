@@ -110,7 +110,7 @@ Status AdsServiceImpl::GetAds(ServerContext* context,
                     .build("Scheduling delayed version 3 AdsList");
                 logger.info(schedule_message);
                 
-                std::thread([this, stream, client_context, session_id, &session_timer]() {
+                std::thread([this, stream, client_context, session_id, &session_timer, context_count]() {
                     std::this_thread::sleep_for(std::chrono::milliseconds(50));
                     
                     try {

@@ -7,6 +7,8 @@
 #include <string>
 #include <map>
 #include <thread>
+#include <cstdint>
+#include <type_traits>
 
 /**
  * Structured logging utilities for consistent formatting across C++ implementations.
@@ -38,6 +40,37 @@ public:
     
     LogContext& add(const std::string& key, long value) {
         context_[key] = std::to_string(value);
+        return *this;
+    }
+        
+    LogContext& add(const std::string& key, unsigned long value) {
+        context_[key] = std::to_string(value);
+        return *this;
+    }
+    
+    LogContext& add(const std::string& key, uint32_t value) {
+        context_[key] = std::to_string(value);
+        return *this;
+    }
+    
+    LogContext& add(const std::string& key, uint64_t value) {
+        context_[key] = std::to_string(value);
+        return *this;
+    }
+        
+    // For thread IDs
+    LogContext& add(const std::string& key, std::thread::id value) {
+        std::ostringstream oss;
+        oss << value;
+        context_[key] = oss.str();
+        return *this;
+    }
+    
+    // For gRPC status codes and other enum types
+    template<typename T>
+    LogContext& add(const std::string& key, T value, 
+                   typename std::enable_if<std::is_enum<T>::value>::type* = nullptr) {
+        context_[key] = std::to_string(static_cast<int>(value));
         return *this;
     }
     

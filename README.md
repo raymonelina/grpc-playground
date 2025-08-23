@@ -5,7 +5,7 @@ A multi-language implementation of gRPC bidirectional streaming for ad serving w
 ## Project Structure
 
 ```
-├── proto/                 # Protocol buffer definitions
+├── proto/                # Protocol buffer definitions
 │   └── ads.proto         # Core service and message definitions
 ├── java/                 # Java implementations
 │   ├── client/           # Java client implementation
@@ -18,8 +18,10 @@ A multi-language implementation of gRPC bidirectional streaming for ad serving w
 │   └── server/           # Rust server implementation
 ├── scripts/              # Build and execution scripts
 └── docs/                 # Documentation
+    ├── spec.md                     # Project specification and overview
+    ├── interoperability-testing.md # Cross-language testing guide
     ├── logging-specification.md    # Logging format standards
-    └── troubleshooting-guide.md   # Common issues and solutions
+    └── troubleshooting-guide.md    # Common issues and solutions
 ```
 
 ## Protocol
@@ -127,9 +129,10 @@ For common issues and solutions, see [docs/troubleshooting-guide.md](docs/troubl
 
 ## Documentation
 
+- [Project Specification](docs/spec.md) - Detailed project specification and overview
+- [Interoperability Testing](docs/interoperability-testing.md) - Cross-language testing guide
 - [Logging Specification](docs/logging-specification.md) - Detailed logging format and requirements
 - [Troubleshooting Guide](docs/troubleshooting-guide.md) - Common issues and solutions
-- [Interoperability Testing](docs/interoperability-testing.md) - Cross-language testing guide
 
 ## Getting Started
 
