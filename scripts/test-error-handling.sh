@@ -5,6 +5,9 @@
 
 set -e
 
+# Source common utilities
+source "$(dirname "$0")/common.sh"
+
 # Check for bash version 4+ for associative arrays, fallback to files if not available
 if [ "${BASH_VERSION%%.*}" -ge 4 ] 2>/dev/null; then
     USE_ASSOCIATIVE_ARRAYS=true
@@ -64,25 +67,7 @@ get_test_result() {
     fi
 }
 
-# Function to print colored output
-print_status() {
-    local color="$1"
-    local message="$2"
-    case "$color" in
-        "green") echo -e "\033[32m✅ $message\033[0m" ;;
-        "red") echo -e "\033[31m❌ $message\033[0m" ;;
-        "yellow") echo -e "\033[33m⚠️  $message\033[0m" ;;
-        "blue") echo -e "\033[34mℹ️  $message\033[0m" ;;
-        "cyan") echo -e "\033[36m🔍 $message\033[0m" ;;
-        "purple") echo -e "\033[35m📊 $message\033[0m" ;;
-        *) echo "$message" ;;
-    esac
-}
 
-# Function to check if command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
 
 # Function to find available port
 find_available_port() {

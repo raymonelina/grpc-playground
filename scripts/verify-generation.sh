@@ -3,6 +3,9 @@
 # Script to verify that all generated protobuf code compiles correctly
 set -e
 
+# Source common utilities
+source "$(dirname "$0")/common.sh"
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
@@ -10,9 +13,6 @@ echo "Verifying protobuf code generation and compilation..."
 echo "===================================================="
 
 # Function to check if command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
 
 # Function to run a verification step
 verify_step() {

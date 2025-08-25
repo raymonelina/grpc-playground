@@ -4,30 +4,19 @@
 # This script generates Java, C++, and Rust code from the ads.proto file
 # Supports clean, regenerate, and selective generation
 
+# Exit immediately if any command fails
 set -e
+
+# Source common utilities
+source "$(dirname "$0")/common.sh"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 PROTO_DIR="$PROJECT_ROOT/proto"
 PROTO_FILE="$PROTO_DIR/ads.proto"
 
-# Function to check if command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-# Function to print colored output
-print_status() {
-    local color="$1"
-    local message="$2"
-    case "$color" in
-        "green") echo -e "\033[32m✅ $message\033[0m" ;;
-        "red") echo -e "\033[31m❌ $message\033[0m" ;;
-        "yellow") echo -e "\033[33m⚠️  $message\033[0m" ;;
-        "blue") echo -e "\033[34mℹ️  $message\033[0m" ;;
-        *) echo "$message" ;;
-    esac
-}
+# Source common utilities
+source "$SCRIPT_DIR/common.sh"
 
 # Function to clean generated code
 clean_generated() {

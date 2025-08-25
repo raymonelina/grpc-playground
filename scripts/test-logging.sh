@@ -5,6 +5,9 @@
 
 set -e
 
+# Source common utilities
+source "$(dirname "$0")/common.sh"
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
